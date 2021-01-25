@@ -23,8 +23,13 @@ const GameScreen = props => {
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
-    const { userChoice } = props;
+    const { userChoice, onGameOver } = props
 
+    useEffect(() => {
+        if (currentGuess === userChoice) {
+            onGameOver(rounds)
+        }
+    }, [currentGuess, userChoice, onGameOver])
 
     const nextGuessHandler = direction => {
         if (
